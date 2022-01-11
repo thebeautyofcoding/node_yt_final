@@ -1,0 +1,23 @@
+{
+  "name": "ytnode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "quickstart.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "ffmpeg-static": "^4.4.1",
+    "ffprobe-static": "^3.0.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "googleapis": "^92.0.0",
+    "youtube-api": "^3.0.1",
+    "youtube-dl-exec": "^2.0.2",
+    "ytdl-core": "^4.9.2"
+  }
+}
