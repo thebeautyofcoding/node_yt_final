@@ -12,7 +12,7 @@ request = require('request')
 
 let playListId = ''
 
-const channelId = process.argv[2]
+const channelId = process.argv[3]
 
 
 async function startDownload (channelId) {
@@ -77,7 +77,7 @@ async function getVideosByPlayListId (playListId) {
     const url = `${baseUrl}/playlistItems?part=snippet,contentDetails&maxResults=50&playlistId=${playListId}&key=${apiKEY}`
     const response = await axios(url).catch(err => console.log)
 
-    fs.writeFileSync('videos.json', JSON.stringify(response.data.items))
+    fs.writeFileSync('../videos.json', JSON.stringify(response.data.items))
     await getRandomVideo(response.data.items)
 
 
@@ -89,12 +89,12 @@ async function getRandomVideo (videos) {
     const videoToDownload = videos[randomIndex]
 
     const videoUrl = `https://youtube.com/watch?v=${videoToDownload.snippet.resourceId.videoId}`
-    await download(videoUrl, videoToDownload.id)
+    await download.download(videoUrl, videoToDownload.id)
 
     for (const [key, value] of Object.entries(videoToDownload.snippet.thumbnails)) {
-        request(value.url).pipe(fs.createWriteStream(`${__dirname}/videos/thumbnailsForLatestVideo/${key}.png`))
+        request(value.url).pipe(fs.createWriteStream(`./videos/thumbnailsForLatestVideo/${key}.png`))
     }
-    fs.writeFile('downloadedVideo.json', JSON.stringify(videoToDownload), (err) => console.log(err))
+    fs.writeFile('./downloadedVideo.json', JSON.stringify(videoToDownload), (err) => console.log(err))
 
 }
 

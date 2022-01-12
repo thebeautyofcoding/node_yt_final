@@ -11,9 +11,9 @@ const { google } = require('googleapis')
 const OAuth2 = google.auth.OAuth2
 var events = require('events')
 
-const downloadedVideo = require('./downloadedVideo.json')
+const downloadedVideo = require('../downloadedVideo.json')
 
-var eventEmitter = new events.EventEmitter()
+var eventEmitter = require('../eventEmitter')
 // video category IDs for YouTube...google them or use youtube userinterface to choose, not possible to fetch them:
 const categoryIds = {
     Entertainment: 24,
@@ -24,7 +24,7 @@ const categoryIds = {
 // If modifying these scopes, delete your previously saved credentials in client_oauth_token.json
 const SCOPES = ['https://www.googleapis.com/auth/youtube.upload']
 // Contains the access_token
-const TOKEN_PATH = `${__dirname}\\credentials.json`
+const TOKEN_PATH = `../credentials.json`
 
 const express = require('express')
 const app = express()
@@ -55,12 +55,12 @@ const { id } = downloadedVideo
 
 async function uploadVideo (title, description, tags, id) {
 
-    if (fs.existsSync(`${__dirname}/videos/trimmed/${id}.mp4`)) {
-        videoFilePath = `${__dirname}/videos/trimmed/${id}.mp4`
+    if (fs.existsSync(`./videos/trimmed/${id}.mp4`)) {
+        videoFilePath = `./videos/trimmed/${id}.mp4`
     } else {
-        videoFilePath = `${__dirname}/videos/${id}.mp4`
+        videoFilePath = `./videos/${id}.mp4`
     }
-    thumbFilePath = `${__dirname}/videos/thumbnailsForLatestVideo/high.png`
+    thumbFilePath = `./videos/thumbnailsForLatestVideo/high.png`
 
     assert(fs.existsSync(videoFilePath))
     assert(fs.existsSync(thumbFilePath))

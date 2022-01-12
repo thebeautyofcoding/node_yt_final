@@ -6,12 +6,12 @@ Install all needed dependencies via : "npm install"
 2. Now you should be done with preperation work.
 
 
-3.Now you can run: "node quickstart.js some-channel-id"  You always get the channelId  when you are on a youtube video and then click on the channel below the video.  What this script will do now, is, get the first 50 videos, if this channel has got 50, otherwise ofc less than 50. You can see them in videos.json in the root.... but thats not so important. Then it will randomly pick one, download it and its thumbnails. 
+3.Now you can run: "node script.js download some-channel-id"  You always get the channelId  when you are on a youtube video and then click on the channel below the video.  What this script will do now, is, get the first 50 videos, if this channel has got 50, otherwise ofc less than 50. You can see them in videos.json in the root.... but thats not so important. Then it will randomly pick one, download it and its thumbnails. 
 
-4. Now you can trim it by running "node trimVideo.js". By default, the last 20 seconds are cut off. You can change the it according to your needs by looking for the number "20" in the "trimVideo.js" file.
+4. Now you can trim it by running "node script.js trim". By default, the last 20 seconds are cut off. You can change the it according to your needs by looking for the number "20" in the "trimVideo.js" file.
 
 
-5. After that you can upload the video via "node videoUpload.js". In the console of your Editor, you will see a link...just follow the instruction in your browser. By now, congrats, the video is already uploading. Title and description are already prepopulated. After a sucessful upload, the thumbnail from the downloaded video is set.
+5. After that you can upload the video via "node script.js upload". In the console of your Editor, you will see a link...just follow the instruction in your browser. By now, congrats, the video is already uploading. Title and description are already prepopulated. After a sucessful upload, the thumbnail from the downloaded video is set.
 
 
 6. Hope you are happy with the work. In case, you have problems or you do not like something, let me know :)

@@ -2,10 +2,8 @@ const cp = require('child_process')
 const readline = require('readline')
 const ytdl = require('ytdl-core')
 const ffmpeg = require('ffmpeg-static')
-
-
-module.exports = function download (videoUrl, videoId) {
-
+const eventEmitter = require(`../eventEmitter`)
+exports.download = function download (videoUrl, videoId) {
 
     const ref = videoUrl
     const tracker = {
@@ -60,7 +58,7 @@ module.exports = function download (videoUrl, videoId) {
         // Keep encoding
         '-c:v', 'copy',
         // Define output file
-        `${__dirname}/videos/${videoId}.mp4`,
+        `./videos/${videoId}.mp4`,
     ], {
         windowsHide: true,
         stdio: [
@@ -72,6 +70,7 @@ module.exports = function download (videoUrl, videoId) {
     })
     ffmpegProcess.on('close', () => {
         console.log('done')
+
         // Cleanup
         process.stdout.write('\n\n\n\n')
         clearInterval(progressbarHandle)
@@ -91,6 +90,12 @@ module.exports = function download (videoUrl, videoId) {
         }
         tracker.merged = args
     })
+    ffmpegProcess.on('close', () => {
+        eventEmitter.emit('doneDownloading')
+    })
+
     audio.pipe(ffmpegProcess.stdio[4])
     video.pipe(ffmpegProcess.stdio[5])
+
+
 }
