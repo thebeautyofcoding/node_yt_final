@@ -1,7 +1,7 @@
 
 
 const eventEmitter = require(`./eventEmitter.js`)
-console.log(eventEmitter)
+
 
 const functionToRun = () => {
     if (process.argv[2] === 'start') {
@@ -16,6 +16,8 @@ const functionToRun = () => {
             })
         })
 
+    } else {
+        console.log('use the start command to start the script')
     }
 
 }
